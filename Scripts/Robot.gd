@@ -34,6 +34,12 @@ func _process(delta):
 	if Input.is_action_pressed("Left"):
 		motion.x += -1
 	
+	if motion == Vector2.ZERO:
+		$AnimatedSprite.play("Idle")
+	else:
+		$AnimatedSprite.play("Run")
+	$AnimatedSprite.flip_h = motion.x < 0
+	
 	motion = motion.normalized()
 	move_and_slide(motion * SPEED * delta)
 
